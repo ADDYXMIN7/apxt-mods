@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07110b">
+<title>APXT MODS — Apps & Games</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#050b07;
+  color:#fff;
+}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#09130d;
+  border-bottom:1px solid #193d26;
+  padding:15px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  color:#45ff78;
+  letter-spacing:1px;
+}
+
+.menu{
+  font-size:25px;
+  cursor:pointer;
+}
+
+.tagline{
+  color:#8da795;
+  font-size:12px;
+  margin-top:3px;
+}
+
+/* SEARCH */
+.search-box{
+  margin-top:14px;
+  display:flex;
+  background:#0e1c13;
+  border:1px solid #214c2e;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.search-box input{
+  width:100%;
+  padding:13px;
+  background:none;
+  border:0;
+  outline:0;
+  color:white;
+  font-size:14px;
+}
+
+.search-box span{
+  padding:13px;
+  color:#45ff78;
+}
+
+/* CATEGORY */
+.categories{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:14px 0 2px;
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
+}
+
+.category{
+  white-space:nowrap;
+  padding:9px 15px;
+  border-radius:20px;
+  background:#0d1b12;
+  border:1px solid #214c2e;
+  color:#b8cbbd;
+  cursor:pointer;
+}
+
+.category.active{
+  background:#20a951;
+  border-color:#20a951;
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  margin:18px 15px;
+  padding:25px 18px;
+  border:1px solid #245a34;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 90% 10%,#1c743b55,transparent 35%),
+    linear-gradient(135deg,#102719,#07100b);
+}
+
+.hero h1{
+  font-size:27px;
+  margin-bottom:8px;
+}
+
+.hero h1 span{
+  color:#45ff78;
+}
+
+.hero p{
+  color:#a3b5a8;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.hero-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 17px;
+  background:#25ad55;
+  border-radius:9px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+}
+
+/* MAIN */
+main{
+  padding:0 15px 40px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0 13px;
+}
+
+.section-head h2{
+  font-size:19px;
+}
+
+.section-head small{
+  color:#45ff78;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.card{
+  background:#0c1810;
+  border:1px solid #193c25;
+  border-radius:15px;
+  padding:11px;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  border-color:#36b960;
+}
+
+.app-icon{
+  height:95px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:900;
+  background:linear-gradient(135deg,#12391e,#238342);
+}
+
+.card h3{
+  font-size:15px;
+  margin-top:10px;
+}
+
+.info{
+  color:#819789;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.details{
+  display:block;
+  width:100%;
+  border:0;
+  margin-top:10px;
+  padding:9px;
+  border-radius:8px;
+  background:#183722;
+  color:#baffca;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.download{
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding:9px;
+  border-radius:8px;
+  text-align:center;
+  background:#21a851;
+  color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* NO RESULTS */
+.no-results{
+  display:none;
+  text-align:center;
+  color:#829589;
+  padding:40px 10px;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:#000b;
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:100%;
+  max-width:450px;
+  background:#0b1710;
+  border:1px solid #28603a;
+  border-radius:18px;
+  padding:20px;
+  max-height:85vh;
+  overflow:auto;
+}
+
+.close{
+  float:right;
+  font-size:25px;
+  color:#9fb4a5;
+  cursor:pointer;
+}
+
+.modal-box h2{
+  color:#45ff78;
+  margin-bottom:10px;
+}
+
+.modal-box p{
+  color:#a6b6aa;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:12px;
+}
+
+.details-list{
+  color:#c6d6ca;
+  font-size:13px;
+  line-height:2;
+  list-style:none;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid #193d26;
+  text-align:center;
+  padding:25px 15px;
+  color:#718579;
+  font-size:11px;
+}
+
+footer strong{
+  color:#45ff78;
+}
+
+/* DESKTOP */
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .hero{
+    max-width:900px;
+    margin:25px auto;
+  }
+
+  main{
+    max-width:1000px;
+    margin:auto;
+  }
+
+  header{
+    padding-left:calc((100% - 1000px)/2);
+    padding-right:calc((100% - 1000px)/2);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="top">
+    <div>
+      <div class="logo">APXT MODS</div>
+      <div class="tagline">Apps • Games • Tools</div>
+    </div>
+
+    <div class="menu">☰</div>
+  </div>
+
+  <div class="search-box">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search apps & games..."
+      oninput="searchApps()"
+    >
+    <span>🔍</span>
+  </div>
+
+  <div class="categories">
+
+    <button class="category active" onclick="filterCategory('All',this)">
+      All
+    </button>
+
+    <button class="category" onclick="filterCategory('Apps',this)">
+      Apps
+    </button>
+
+    <button class="category" onclick="filterCategory('Games',this)">
+      Games
+    </button>
+
+    <button class="category" onclick="filterCategory('Tools',this)">
+      Tools
+    </button>
+
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <h1>Welcome to <span>APXT MODS</span></h1>
+
+  <p>
+    Discover apps, games and useful tools in one simple place.
+    Fast, clean and mobile friendly.
+  </p>
+
+  <a href="#apps" class="hero-btn">
+    Explore Apps
+  </a>
+
+</section>
+
+
+<main id="apps">
+
+  <div class="section-head">
+    <h2>🔥 Featured</h2>
+    <small id="count">4 Apps</small>
+  </div>
+
+
+  <div class="grid" id="appGrid">
+
+    <!-- APP 1 -->
+    <article
+      class="card"
+      data-category="Apps"
+      data-name="WhatsApp"
+    >
+
+      <div class="app-icon">WA</div>
+
+      <h3>WhatsApp</h3>
+
+      <div class="info">
+        Messaging • Official
+      </div>
+
+      <button
+        class="details"
+        onclick="showDetails(
+        'WhatsApp',
+        'Messaging application for chatting and calling.',
+        'Apps',
+        'Latest'
+        )"
+      >
+        View Details
+      </button>
+
+      <!-- Replace # with your legal/official link -->
+      <a
+        class="download"
+        href="#"
+        onclick="demoDownload(event)"
+      >
+        Download
+      </a>
+
+    </article>
+
+
+    <!-- APP 2 -->
+    <article
+      class="card"
+      data-category="Games"
+      data-name="Minecraft"
+    >
+
+      <div class="app-icon">MC</div>
+
+      <h3>Minecraft</h3>
+
+      <div class="info">
+        Game • Official
+      </div>
+
+      <button
+        class="details"
+        onclick="showDetails(
+        'Minecraft',
+        'Sandbox building and adventure game.',
+        'Games',
+        'Latest'
+        )"
+      >
+        View Details
+      </button>
+
+      <a
+        class="download"
+        href="#"
+        onclick="demoDownload(event)"
+      >
+        Download
+      </a>
+
+    </article>
+
+
+    <!-- APP 3 -->
+    <article
+      class="card"
+      data-category="Apps"
+      data-name="Telegram"
+    >
+
+      <div class="app-icon">TG</div>
+
+      <h3>Telegram</h3>
+
+      <div class="info">
+        Messaging • Official
+      </div>
+
+      <button
+        class="details"
+        onclick="showDetails(
+        'Telegram',
+        'Messaging and communication application.',
+        'Apps',
+        'Latest'
+        )"
+      >
+        View Details
+      </button>
+
+      <a
+        class="download"
+        href="#"
+        onclick="demoDownload(event)"
+      >
+        Download
+      </a>
+
+    </article>
+
+
+    <!-- APP 4 -->
+    <article
+      class="card"
+      data-category="Tools"
+      data-name="Chrome"
+    >
+
+      <div class="app-icon">CH</div>
+
+      <h3>Chrome</h3>
+
+      <div class="info">
+        Browser • Official
+      </div>
+
+      <button
+        class="details"
+        onclick="showDetails(
+        'Chrome',
+        'Fast and popular web browser.',
+        'Tools',
+        'Latest'
+        )"
+      >
+        View Details
+      </button>
+
+      <a
+        class="download"
+        href="#"
+        onclick="demoDownload(event)"
+      >
+        Download
+      </a>
+
+    </article>
+
+  </div>
+
+
+  <div id="noResults" class="no-results">
+    😕 No apps found.
+  </div>
+
+</main>
+
+
+<!-- DETAILS POPUP -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2 id="modalTitle">App</h2>
+
+    <p id="modalDescription"></p>
+
+    <ul class="details-list">
+
+      <li>📦 Category: <span id="modalCategory"></span></li>
+
+      <li>📱 Platform: Android</li>
+
+      <li>🔄 Version: <span id="modalVersion"></span></li>
+
+      <li>⚡ Status: Available</li>
+
+    </ul>
+
+    <a
+      href="#"
+      class="download"
+      onclick="demoDownload(event)"
+    >
+      Download
+    </a>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  © 2026 <strong>APXT MODS</strong><br>
+  Apps • Games • Tools
+
+</footer>
+
+
+<script>
+
+let currentCategory = "All";
+
+
+function filterCategory(category,button){
+
+  currentCategory = category;
+
+  document
+    .querySelectorAll(".category")
+    .forEach(btn => btn.classList.remove("active"));
+
+  button.classList.add("active");
+
+  searchApps();
+
+}
+
+
+function searchApps(){
+
+  const query =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const cards =
+    document.querySelectorAll(".card");
+
+  let visible = 0;
+
+  cards.forEach(card => {
+
+    const name =
+      card.dataset.name.toLowerCase();
+
+    const category =
+      card.dataset.category;
+
+    const matchesSearch =
+      name.includes(query);
+
+    const matchesCategory =
+      currentCategory === "All" ||
+      category === currentCategory;
+
+    if(matchesSearch && matchesCategory){
+
+      card.style.display = "block";
+      visible++;
+
+    }else{
+
+      card.style.display = "none";
+
+    }
+
+  });
+
+  document.getElementById("count").textContent =
+    visible + (visible === 1 ? " App" : " Apps");
+
+  document.getElementById("noResults").style.display =
+    visible === 0 ? "block" : "none";
+
+}
+
+
+function showDetails(
+  title,
+  description,
+  category,
+  version
+){
+
+  document.getElementById("modalTitle").textContent =
+    title;
+
+  document.getElementById("modalDescription").textContent =
+    description;
+
+  document.getElementById("modalCategory").textContent =
+    category;
+
+  document.getElementById("modalVersion").textContent =
+    version;
+
+  document.getElementById("modal").style.display =
+    "flex";
+
+}
+
+
+function closeModal(){
+
+  document.getElementById("modal").style.display =
+    "none";
+
+}
+
+
+function demoDownload(event){
+
+  event.preventDefault();
+
+  alert(
+    "Add your legal/official download link in the HTML first."
+  );
+
+}
+
+
+window.onclick = function(event){
+
+  const modal =
+    document.getElementById("modal");
+
+  if(event.target === modal){
+
+    closeModal();
+
+  }
+
+}
+
+</script>
+
+</body>
+</htm1>
